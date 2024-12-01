@@ -6,14 +6,15 @@ const mysql = require("mysql2"); // Principio de inmutabilidad
 
 // Cadena de conexion
 const cnx = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  database: "interpolice",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
-cnx.query("SELECT * FROM citizen", (err, results) => {
+/* cnx.query("SELECT * FROM citizen", (err, results) => {
   console.log(results); // results contains rows returned by server
-});
+}); */
 
 cnx.connect((error) => {
   if (error) {
@@ -23,4 +24,4 @@ cnx.connect((error) => {
   }
 });
 
-module.exports = cnx
+module.exports = cnx;
