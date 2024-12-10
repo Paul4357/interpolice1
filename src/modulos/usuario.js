@@ -16,7 +16,7 @@ usuario.get("/api/usuario/listartodos", (req, res) => {
 
   let consulta = "SELECT COUNT(*) AS totalUsuarios FROM usuarios";
   let consulta2 =
-    "SELECT user_Id, user_Nombre, user_Apellido, rol_Tipo FROM usuario JOIN rol ON usuario.rol_rol_id = rol.rol_id";
+    "SELECT user_Id, user_Nombre, user_Apellido, rol_Tipo FROM usuario JOIN rol ON usuario.rol_rol_id = rol.rol_id LIMIT ? OFFSET ?";
   dataBase.query(consulta, (error, totalUsuarios) => {
     dataBase.query(consulta2, [limite, offset], (error, usuario) => {
       if (error) {
