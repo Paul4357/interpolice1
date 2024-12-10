@@ -57,7 +57,7 @@ ciudadano.get("/api/ciudadano/listartodos", (req, res) => {
 citizen.get("/api/citizen/listarporid/:id", (req, res) => {
   let id = req.params.id;
   let consulta =
-    "SELECT citizen.nombre, citizen.apellidos, citizen.apodo, citizen.email, citizen.foto, citizen.fechanace, categoria.cat_Id FROM citizen JOIN categoria ON categoria.cat_Id = citizen.tipo_tip_Id WHERE citizen.id = 1";
+    "SELECT citizen.nombre, citizen.apellidos, citizen.apodo, citizen.email, citizen.foto, citizen.fechanace, categoria.cat_Id FROM citizen JOIN categoria ON categoria.cat_Id = citizen.tipo_tip_Id WHERE citizen.id = ?";
   dataBase.query(consulta, [id], (error, citizen) => {
     if (error) {
       res.status(400).send({

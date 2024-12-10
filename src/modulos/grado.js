@@ -88,7 +88,7 @@ grado.post("/api/grado/agregar", (req, res) => {
     } else {
       res.status(200).send({
         status: "OK",
-        mensaje: "¡Actualización exitosa!",
+        mensaje: "¡Registro exitoso!",
         grado: grado,
       });
     }
