@@ -1,9 +1,38 @@
-// Modula para administrar la info de los ciudadanos
+// Modula para administrar la info de los roles
 const dataBase = require("./bd.js");
 
 const express = require("express");
 
 const rol = express();
+
+/* rol.get("/api/rol/listartodos", (req, res) => {
+  let limite = parseInt(req.query.limite);
+  // RECIBIR LA PAGINA
+  let pagina = parseInt(req.query.pagina);
+  //CALCULAR EL OFFSET
+  let offset = (pagina - 1) * limite;
+
+  let consulta = "SELECT COUNT(*) AS totalRoles FROM roles";
+  let consulta2 = "SELECT * FROM rol";
+
+  dataBase.query(consulta, (error, totalRoles) => {
+    dataBase.query(consulta2, [limite, offset], (error, rol) => {
+      if (error) {
+        res.status(400).send({
+          status: "Error",
+          mensaje: "Ocurrio un error en la consulta",
+          error: error,
+        });
+      } else {
+        res.status(200).send({
+          status: "OK",
+          mensaje: "Consulta exitosa",
+          rol: rol,
+        });
+      }
+    });
+  });
+}); */
 
 rol.get("/api/rol/listartodos", (req, res) => {
   let consulta = "SELECT * FROM rol";

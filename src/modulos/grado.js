@@ -1,9 +1,37 @@
-// Modula para administrar la info de los ciudadanos
+// Modula para administrar la info de los grados
 const dataBase = require("./bd.js");
 
 const express = require("express");
 
 const grado = express();
+
+/* grado.get("/api/grado/listartodos", (req, res) => {
+  let limite = parseInt(req.query.limite);
+  // RECIBIR LA PAGINA
+  let pagina = parseInt(req.query.pagina);
+  //CALCULAR EL OFFSET
+  let offset = (pagina - 1) * limite;
+
+  let consulta = "SELECT COUNT(*) AS totalGrados FROM grados";
+  let consulta2 = "SELECT * FROM grados";
+  dataBase.query(consulta, (error, totalGrados) => {
+    dataBase.query(consulta2, [limite, offset], (error, grado) => {
+      if (error) {
+        res.status(400).send({
+          status: "Error",
+          mensaje: "Ocurrio un error en la consulta",
+          error: error,
+        });
+      } else {
+        res.status(200).send({
+          status: "OK",
+          mensaje: "¡Registro exitoso!",
+          grado: grado,
+        });
+      }
+    });
+  });
+}); */
 
 grado.get("/api/grado/listartodos", (req, res) => {
   let consulta = "SELECT * FROM grados";

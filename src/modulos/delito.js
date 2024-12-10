@@ -1,4 +1,4 @@
-// Modula para administrar la info de los ciudadanos
+// Modula para administrar la info de los delitos
 const dataBase = require("./bd.js");
 
 const express = require("express");
@@ -6,22 +6,31 @@ const express = require("express");
 const delito = express();
 
 delito.get("/api/delito/listartodos", (req, res) => {
-  let consulta =
-    "SELECT del_Id, del_Nombre, del_Desc, gra_Nivel FROM delito JOIN grados ON delito.grados_gra_Id = grados.gra_Id";
-  dataBase.query(consulta, (error, delito) => {
-    if (error) {
-      res.status(400).send({
-        status: "Error",
-        mensaje: "Ocurrio un error en la consulta",
-        error: error,
-      });
-    } else {
-      res.status(200).send({
-        status: "OK",
-        mensaje: "Consulta exitosa",
-        delito: delito,
-      });
-    }
+  let limite = parseInt(req.query.limite);
+  // RECIBIR LA PAGINA
+  let pagina = parseInt(req.query.pagina);
+  //CALCULAR EL OFFSET
+  let offset = (pagina - 1) * limite;
+
+  let consulta = "SELECT COUNT(*) AS totalDelitos FROM delitos";
+  let consulta2 =
+    "SELECT del_Id, del_Nombre, del_Desc, gra_Nivel FROM delito JOIN grados ON delito.grados_gra_Id = grados.gra_Id LIMIT ? OFFSET ?";
+  dataBase.query(consulta, (error, totalDelitos) => {
+    dataBase.query(consulta2, [limite, offset], (error, delito) => {
+      if (error) {
+        res.status(400).send({
+          status: "Error",
+          mensaje: "Ocurrio un error en la consulta",
+          error: error,
+        });
+      } else {
+        res.status(200).send({
+          status: "OK",
+          mensaje: "Consulta exitosa",
+          delito: delito,
+        });
+      }
+    });
   });
 });
 
