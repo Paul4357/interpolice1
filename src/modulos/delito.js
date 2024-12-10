@@ -1,4 +1,4 @@
-// Modula para administrar la info de los delitos
+// Modulo para administrar la info de los delitos
 const dataBase = require("./bd.js");
 
 const express = require("express");

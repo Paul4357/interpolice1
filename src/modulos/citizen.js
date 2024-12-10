@@ -1,4 +1,4 @@
-// Modula para administrar la info de los ciudadanos
+// Modulo para administrar la info de los ciudadanos
 const dataBase = require("./bd.js");
 
 const express = require("express");

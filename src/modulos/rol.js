@@ -1,4 +1,4 @@
-// Modula para administrar la info de los roles
+// Modulo para administrar la info de los roles
 const dataBase = require("./bd.js");
 
 const express = require("express");

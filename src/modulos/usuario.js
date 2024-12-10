@@ -1,4 +1,4 @@
-// Modula para administrar la info de los usuarios
+// Modulo para administrar la info de los usuarios
 const dataBase = require("./bd.js");
 
 const express = require("express");

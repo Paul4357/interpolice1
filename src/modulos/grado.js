@@ -1,4 +1,4 @@
-// Modula para administrar la info de los grados
+// Modulo para administrar la info de los grados
 const dataBase = require("./bd.js");
 
 const express = require("express");
@@ -45,7 +45,7 @@ grado.get("/api/grado/listartodos", (req, res) => {
     } else {
       res.status(200).send({
         status: "OK",
-        mensaje: "¡Registro exitoso!",
+        mensaje: "¡Consulta exitosa!",
         grado: grado,
       });
     }
